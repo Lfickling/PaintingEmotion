@@ -10,6 +10,10 @@ from tkinter import *
 #from tkinter import ttk
 from tkinter.filedialog import askopenfilename
 from PIL import ImageTk, Image
+import tensorflow as tf
+import numpy as np
+
+class_names = ['amusement', 'anger', 'awe', 'contentment', 'disgust', 'excitement', 'fear', 'sadness']
 
 
 def inputImage():
@@ -21,7 +25,8 @@ def inputImage():
     img = Image.open(filepath)
      
     # resize the image and apply a high-quality down sampling filter
-    img = img.resize((250, 250), Image.ANTIALIAS)
+    img = img.resize((180, 180), Image.ANTIALIAS)
+    img2 = img
  
     # PhotoImage class is used to add image to widgets, icons etc
     img = ImageTk.PhotoImage(img)
@@ -37,16 +42,42 @@ def inputImage():
     painting.image = img
     painting.grid(column = 1, row = 0)
 
+    # load the model and predict
+    predictions = predictImage(img2)
+    score = tf.nn.softmax(predictions[0])
+    predicted_class = class_names[np.argmax(score)]
+    confidence = '%.2f'%(100*np.max(score))
+
     #create a label for the emotion
-    emotion_lbl = Label(root, text="The Emotion Is:")
+    emotion_lbl = Label(root, text="The Emotion Is: ")
     emotion_lbl.grid(column=0,row=1)
 
     # display the emotion
     emotion_solution = StringVar()
-    emotion_solution.set("sorry I don't know")
+    emotion_solution.set(predicted_class)
 
     emotion = Label(root, textvariable=emotion_solution)
     emotion.grid(column = 1, row = 1)
+
+     #create a label for the confidence
+    confidence_lbl = Label(root, text="with a confidence of: ")
+    confidence_lbl.grid(column=2,row=1)
+
+
+    # display the confidence
+    confidence_solution = StringVar()
+    confidence_solution.set(confidence)
+
+    conf = Label(root, textvariable=confidence_solution)
+    conf.grid(column = 3, row = 1)
+
+def predictImage(img):
+    model = tf.keras.models.load_model('model.h5')
+    img_array = tf.keras.utils.img_to_array(img)
+    img_array = tf.expand_dims(img_array, 0)
+
+    predictions = model.predict(img_array)
+    return predictions
 
 if __name__ == "__main__":
     #set up root
