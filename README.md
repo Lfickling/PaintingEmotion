@@ -14,6 +14,12 @@ system requirements: make sure you have these installed on your computer:
         check if you have it installed already with: python3 -m pip show pillow
         https://www.geeksforgeeks.org/how-to-install-pillow-on-linux/
 
+    TensorFlow
+        https://www.tensorflow.org/install
+
+    NumPy
+        https://numpy.org/install/
+
 instructions:
 
     1) navigate to the location of the folder PaintingEmotion in your terminal
