@@ -19,7 +19,7 @@ class_names = ['amusement', 'anger', 'awe', 'contentment', 'disgust', 'excitemen
 def inputImage():
     """Open a file for editing."""
     filepath = askopenfilename(
-        filetypes=[("Image Files", "*.jpg")]
+        filetypes=[("Image Files", "*.jpg *.jpeg *.png")]
     )
     # opens the image
     img = Image.open(filepath)
@@ -75,7 +75,7 @@ def inputImage():
     conf.grid(column = 3, row = 1)
 
 def predictImage(img):
-    model = tf.keras.models.load_model('model2.h5')
+    model = tf.keras.models.load_model('model-10-acc_0.3222-valacc_0.2055.h5')
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
 
