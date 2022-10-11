@@ -24,8 +24,7 @@ instructions:
 
     1) navigate to the location of the folder PaintingEmotion in your terminal
         on my computer the command line prompt will look like this:
-        lfickling@penguin:~/Senior project/PaintingEmotion$
-        yours will be yourname:~/path/PaintingEmotion$
+        yourname:~/path/PaintingEmotion$
     2) then enter python3 Main.py to run the application
     3) follow the instructions on the screen
     
