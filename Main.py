@@ -15,7 +15,6 @@ import numpy as np
 
 class_names = ['amusement', 'anger', 'awe', 'contentment', 'disgust', 'excitement', 'fear', 'sadness']
 
-
 def inputImage():
     """Open a file for editing."""
     filepath = askopenfilename(
@@ -36,12 +35,12 @@ def inputImage():
   
     #destroy existing label and replace with painting label 
     greeting.destroy()
-    btn.destroy()
+    # btn.destroy()
     painting_lbl = Label(root, text="Your Painting:")
     painting_lbl.grid(column=0,row=0)
 
     # display the painting
-    painting = Label(root, image = img)
+    painting.configure(image = img)
     painting.image = img
     painting.grid(column = 1, row = 0)
 
@@ -59,7 +58,8 @@ def inputImage():
     emotion_solution = StringVar()
     emotion_solution.set(predicted_class)
 
-    emotion = Label(root, textvariable=emotion_solution)
+    # emotion = Label(root, textvariable=emotion_solution)
+    emotion.configure(textvariable=emotion_solution)
     emotion.grid(column = 1, row = 1)
 
      #create a label for the confidence
@@ -71,7 +71,8 @@ def inputImage():
     confidence_solution = StringVar()
     confidence_solution.set(confidence)
 
-    conf = Label(root, textvariable=confidence_solution)
+    # conf = Label(root, textvariable=confidence_solution)
+    conf.configure(textvariable=confidence_solution)
     conf.grid(column = 3, row = 1)
 
 def predictImage(img):
@@ -90,7 +91,10 @@ if __name__ == "__main__":
 
     #set up frame
     #mainFrame = ttk.Frame()
-
+    painting = Label(root, image = '')
+    painting.image = ''
+    emotion = Label(root, textvariable='')
+    conf = Label(root, textvariable='')
     #welcome page greeting
     greeting = Label(root, 
         text = "Welcome to Emotionizer!\n I can help you figure out the emotions of paintings!\nClick bellow to get started"
@@ -105,6 +109,6 @@ if __name__ == "__main__":
         command=inputImage
         )
     # Set Button Grid
-    btn.grid(column=1, row=1)
+    btn.grid(column=1, row=2)
 
     root.mainloop()
