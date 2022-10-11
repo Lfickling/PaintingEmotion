@@ -25,8 +25,8 @@ def inputImage():
     img = Image.open(filepath)
      
     # resize the image and apply a high-quality down sampling filter
-    img = img.resize((180, 180), Image.ANTIALIAS)
-    img2 = img
+    img2 = img.resize((120, 120), Image.ANTIALIAS)
+    img = img.resize((img.width//2, img.height//2), Image.ANTIALIAS)
  
     # PhotoImage class is used to add image to widgets, icons etc
     img = ImageTk.PhotoImage(img)
@@ -44,9 +44,9 @@ def inputImage():
 
     # load the model and predict
     predictions = predictImage(img2)
-    score = tf.nn.softmax(predictions[0])
-    predicted_class = class_names[np.argmax(score)]
-    confidence = '%.2f'%(100*np.max(score))
+    # score = tf.nn.softmax(predictions[0])
+    predicted_class = class_names[np.argmax(predictions)]
+    confidence = '%.2f'%(100*np.max(predictions))
 
     #create a label for the emotion
     emotion_lbl = Label(root, text="The Emotion Is: ")
@@ -72,7 +72,7 @@ def inputImage():
     conf.grid(column = 3, row = 1)
 
 def predictImage(img):
-    model = tf.keras.models.load_model('model.h5')
+    model = tf.keras.models.load_model('model2.h5')
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
 
