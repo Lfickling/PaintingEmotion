@@ -21,7 +21,7 @@ def inputImage():
         filetypes=[("Image Files", "*.jpg *.jpeg *.png")]
     )
     # opens the image
-    img = Image.open(filepath)
+    img = Image.open(filepath).convert('RGB')
      
     # resize the image and apply a high-quality down sampling filter
     img2 = img.resize((120, 120), Image.ANTIALIAS)
