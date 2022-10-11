@@ -26,7 +26,10 @@ def inputImage():
      
     # resize the image and apply a high-quality down sampling filter
     img2 = img.resize((120, 120), Image.ANTIALIAS)
-    img = img.resize((img.width//2, img.height//2), Image.ANTIALIAS)
+    scale = 300/img.height
+    if img.width*scale>400:
+        scale = 400/img.width
+    img = img.resize((int(img.width*scale), int(img.height*scale)), Image.ANTIALIAS)
  
     # PhotoImage class is used to add image to widgets, icons etc
     img = ImageTk.PhotoImage(img)
