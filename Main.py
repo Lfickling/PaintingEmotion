@@ -97,7 +97,7 @@ if __name__ == "__main__":
     conf = Label(root, textvariable='')
     #welcome page greeting
     greeting = Label(root, 
-        text = "Welcome to Emotionizer!\n I can help you figure out the emotions of paintings!\nClick bellow to get started"
+        text = "Welcome to Emotionizer!\n I can help you figure out the emotions of paintings!\nClick below to get started"
         )
     greeting.grid(column=1, row=0)
 
