@@ -20,6 +20,12 @@ system requirements: make sure you have these installed on your computer:
     NumPy
         https://numpy.org/install/
 
+    SciPy
+        https://scipy.org/install/
+
+    OpenCV
+        https://pypi.org/project/opencv-python/
+
 instructions:
 
     1) navigate to the location of the folder PaintingEmotion in your terminal
