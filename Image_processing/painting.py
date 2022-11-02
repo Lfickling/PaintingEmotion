@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 # from balance import calcBalance
 # from emphasis import calcEmphasis
-from harmony import calcHarmony
+from Image_processing.harmony import calcHarmony
 
 # from variety import calcVariety
 # from gradation import calcGradation
