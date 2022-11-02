@@ -1,5 +1,4 @@
 import pandas
-
 import os, os.path
 import fnmatch
 import re
@@ -14,7 +13,7 @@ for emotion in listOfDir:
         painting1 = Painting("currentImage", "PaintingEmotion/ExamplePaintings/test.jpg")
         painting1.preprocessing()
         painting1.calculateProperties()
-        with open('fixedLists\\badList.csv', 'a') as fd:
+        with open('fixedLists\\' + emotion + '.csv', 'a') as fd:
             writer = csv.writer(fd)
             writer.writerow(painting1.getPropertiesList())
 
